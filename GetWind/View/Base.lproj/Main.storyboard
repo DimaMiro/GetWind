@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -114,9 +115,12 @@
                                 <state key="normal" title="Forecast for a week">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="forecastButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RQE-Ul-e7z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbc-cs-VhQ">
-                                <rect key="frame" x="24" y="523" width="327" height="44"/>
+                                <rect key="frame" x="24" y="527" width="327" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
@@ -136,6 +140,7 @@
                         <outlet property="cloudsStringLabel" destination="XZM-BU-R9H" id="qTT-uy-6s9"/>
                         <outlet property="currentDateLabel" destination="fPe-FH-eYR" id="Q1O-K6-hWQ"/>
                         <outlet property="currentTemperatureLabel" destination="YGp-JI-dEX" id="ho6-Sg-oyQ"/>
+                        <outlet property="forecastButton" destination="a9u-fr-k2p" id="q4G-BE-BjY"/>
                         <outlet property="humidityStringLabel" destination="eLF-Yc-cLb" id="BeX-Jj-DDM"/>
                         <outlet property="locationStringLabel" destination="XkR-Yh-qGO" id="Yud-xG-qaF"/>
                         <outlet property="maxTamperatureStringLabel" destination="lKG-nD-zXt" id="diq-F0-TjB"/>
@@ -143,16 +148,17 @@
                         <outlet property="pressureStringLabel" destination="WbE-83-ZHe" id="890-9z-1F9"/>
                         <outlet property="weatherIcon" destination="F7h-vd-Ij4" id="A8Q-cL-geA"/>
                         <outlet property="windStringLabel" destination="4pe-vz-gen" id="USd-h9-wiW"/>
+                        <segue destination="JsE-El-vy9" kind="show" identifier="goToForecast" id="SQ4-K3-DKc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Forecast View Controller-->
         <scene sceneID="qC7-Np-xBg">
             <objects>
-                <viewController id="JsE-El-vy9" sceneMemberID="viewController">
+                <viewController id="JsE-El-vy9" customClass="ForecastViewController" customModule="GetWind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="56G-gh-67D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,6 +171,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="backButtonPressed:" destination="JsE-El-vy9" eventType="touchUpInside" id="1sT-0l-1DK"/>
                                     <action selector="backButtonPressed:" destination="NBX-1R-y9I" eventType="touchUpInside" id="7FK-ME-OVW"/>
                                 </connections>
                             </button>
@@ -175,14 +182,88 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gtB-aV-tqV">
+                                <rect key="frame" x="0.0" y="85" width="375" height="582"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="forecastCell" rowHeight="56" id="DhS-nK-yO8" customClass="ForecastCustomCell" customModule="GetWind" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DhS-nK-yO8" id="tKO-4T-b6G">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="al8-NO-1dC">
+                                                    <rect key="frame" x="15" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="jRD-GV-jeO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weekday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ede-O1-N8e">
+                                                    <rect key="frame" x="76" y="15" width="111" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="26" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaS-eI-cv0">
+                                                    <rect key="frame" x="195" y="5" width="46" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Max: temp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyo-ih-n7d">
+                                                    <rect key="frame" x="292" y="5" width="67" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Min: temp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wph-yQ-LMO">
+                                                    <rect key="frame" x="292" y="26" width="67" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="°С" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcD-Q8-DVs">
+                                                    <rect key="frame" x="240" y="5" width="20" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="al8-NO-1dC" secondAttribute="bottom" constant="-5" id="1Db-Q2-Ui6"/>
+                                                <constraint firstItem="al8-NO-1dC" firstAttribute="leading" secondItem="tKO-4T-b6G" secondAttribute="leadingMargin" id="jHV-Vz-bsJ"/>
+                                                <constraint firstItem="al8-NO-1dC" firstAttribute="top" secondItem="tKO-4T-b6G" secondAttribute="top" id="ykB-3E-39Z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="forecastImage" destination="al8-NO-1dC" id="oRB-lf-LsV"/>
+                                            <outlet property="mainTempLabel" destination="OaS-eI-cv0" id="aEo-Xv-X0b"/>
+                                            <outlet property="maxTempLabel" destination="tyo-ih-n7d" id="I0a-IB-Wgk"/>
+                                            <outlet property="minTempLabel" destination="wph-yQ-LMO" id="S3f-fh-cg9"/>
+                                            <outlet property="weekdayLabel" destination="Ede-O1-N8e" id="iiq-Xa-dQI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5ap-vv-KuZ"/>
                     </view>
+                    <connections>
+                        <outlet property="forecastTableView" destination="gtB-aV-tqV" id="27t-nk-sUj"/>
+                        <outlet property="locationLabel" destination="gjM-Cp-OSW" id="3py-eS-dhz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Iw-bm-0z8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="839"/>
+            <point key="canvasLocation" x="136.80000000000001" y="838.83058470764627"/>
         </scene>
         <!--Change City View Controller-->
         <scene sceneID="O04-CB-pRX">
