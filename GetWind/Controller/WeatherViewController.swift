@@ -43,6 +43,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         }
     }
     
+    @IBOutlet weak var forecastButton: UIButton!{
+        didSet {
+            forecastButton.layer.cornerRadius = 6
+        }
+    }
+    
+    
     
     
     override func viewDidLoad() {
@@ -99,6 +106,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             updateUiWithWeatherData()
             
         } else {
+            alert(title: "Issue", message: "Seems that something went wrong. Please try again.", style: .alert)
             locationStringLabel.text = "Weather Unavailable"
         }
     }
@@ -158,16 +166,76 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         let params : [String : String] = ["q" : city, "appid" : APP_ID]
         getWeatherData(url: WEATHER_URL, parameters: params)
     }
-    //Here is the PrepereForSegue method
+    
+    //MARK: - Here is the PrepereForSegue methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Transition to ChangeCityViewController
         if segue.identifier == "changeCityName" {
             
-            let destinationVC = segue.destination as! ChangeCityViewController
+            let destinationChangeCityVC = segue.destination as! ChangeCityViewController
             
-            destinationVC.delegate = self
+            destinationChangeCityVC.delegate = self
+            
+        }
+        //Transition to ForecastViewController
+        if segue.identifier == "goToForecast" {
+            
+            let destinationForecastVC = segue.destination as! ForecastViewController
+            destinationForecastVC.currentLocationFromWeatherVC = weatherDataModel.city
             
         }
     }
+    // MARK: - Alert method
+    func alert (title: String, message: String, style: UIAlertControllerStyle) {
+        let errorAlert = UIAlertController(title: title, message: message, preferredStyle: style)
+        let errorAlertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            
+        }
+        errorAlert.addAction(errorAlertAction)
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Actions
+    @IBAction func forecastButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToForecast", sender: self)
+    }
+    
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

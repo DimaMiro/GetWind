@@ -14,6 +14,8 @@
 		D900E3D120E2D00E00B90951 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900E3D020E2D00E00B90951 /* WeatherViewController.swift */; };
 		D90C714820E2DBD200DC1028 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90C714720E2DBD200DC1028 /* WeatherDataModel.swift */; };
 		D90C714A20EB708800DC1028 /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90C714920EB708800DC1028 /* ChangeCityViewController.swift */; };
+		D934E43C20ECD7190038D539 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934E43B20ECD7190038D539 /* ForecastViewController.swift */; };
+		D934E43E20EF792C0038D539 /* ForecastDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934E43D20EF792C0038D539 /* ForecastDataModel.swift */; };
 		E09475149E4C94D7ABA6B5A8 /* Pods_GetWind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B414FA3EE7E04CCA520DE3FF /* Pods_GetWind.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		D900E3D020E2D00E00B90951 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		D90C714720E2DBD200DC1028 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 		D90C714920EB708800DC1028 /* ChangeCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
+		D934E43B20ECD7190038D539 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		D934E43D20EF792C0038D539 /* ForecastDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 				D900E3BB20E2CF5400B90951 /* AppDelegate.swift */,
 				D900E3D020E2D00E00B90951 /* WeatherViewController.swift */,
 				D90C714920EB708800DC1028 /* ChangeCityViewController.swift */,
+				D934E43B20ECD7190038D539 /* ForecastViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				D90C714720E2DBD200DC1028 /* WeatherDataModel.swift */,
+				D934E43D20EF792C0038D539 /* ForecastDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +243,8 @@
 			files = (
 				D90C714820E2DBD200DC1028 /* WeatherDataModel.swift in Sources */,
 				D900E3BC20E2CF5400B90951 /* AppDelegate.swift in Sources */,
+				D934E43E20EF792C0038D539 /* ForecastDataModel.swift in Sources */,
+				D934E43C20ECD7190038D539 /* ForecastViewController.swift in Sources */,
 				D900E3D120E2D00E00B90951 /* WeatherViewController.swift in Sources */,
 				D90C714A20EB708800DC1028 /* ChangeCityViewController.swift in Sources */,
 			);

@@ -49,7 +49,7 @@ class ChangeCityViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func backButtonPressed(_ sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
