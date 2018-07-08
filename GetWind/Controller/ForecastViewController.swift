@@ -44,6 +44,8 @@ class ForecastViewController: UIViewController {
         
         forecastTableView.delegate = self
         forecastTableView.dataSource = self
+        
+        self.forecastTableView.tableFooterView = UIView()
     }
     //MARK: - Forecast Networking
     //Here is getForecast method
