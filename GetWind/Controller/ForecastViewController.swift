@@ -23,7 +23,6 @@ class ForecastCustomCell: UITableViewCell {
 
 class ForecastViewController: UIViewController {
     // Outlets
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var forecastTableView: UITableView!
     
     //Variables
@@ -61,7 +60,7 @@ class ForecastViewController: UIViewController {
                 
             } else {
                 print("Error: \(String(describing: response.result.error))")
-                self.locationLabel.text = "Connections issues"
+                self.title = "Connections issues"
             }
             
         }
@@ -88,7 +87,7 @@ class ForecastViewController: UIViewController {
             
             updateUIWithForecast()
         } else {
-            locationLabel.text = "Weather Unavailable"
+            self.title = "Weather Unavailable"
         }
     }
     // MARK: - Farecast Data Object
@@ -96,15 +95,9 @@ class ForecastViewController: UIViewController {
     //MARK - UI Update
     func updateUIWithForecast() {
         print("UI Update: \(currentLocationFromWeatherVC)")
-        locationLabel.text = currentLocationFromWeatherVC
+        self.title = currentLocationFromWeatherVC
         self.forecastTableView.reloadData()
     }
-    
-    // MARK - Actions
-    @IBAction func backButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     
     

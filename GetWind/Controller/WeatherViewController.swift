@@ -54,7 +54,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //TODO: Set up Nav bar
+        setupNavigationBar()
+
         //TODO: Set up the location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -194,6 +196,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         }
         errorAlert.addAction(errorAlertAction)
         self.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: - NavigationBar Setup Method
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     // MARK: - Actions

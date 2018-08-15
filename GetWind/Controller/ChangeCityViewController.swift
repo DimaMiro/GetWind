@@ -46,11 +46,8 @@ class ChangeCityViewController: UIViewController {
             delegate?.userEnteredANewCityName(city: cityName)
         }
         // 3 - Dismiss ChangeCityViewController to go back to the WeatherViewController
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
 }
